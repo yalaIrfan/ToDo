@@ -1,3 +1,78 @@
-<p>
-  todo works!
-</p>
+
+
+  <div class="row row panel panel-danger">
+    <div class="col-md-6">
+    <form [formGroup]='rForm' (ngSubmit)="onSubmit(rForm)" novalidate class="todo-card-div ">
+      <div class="row">
+
+        <div class="col-md-9 panel panel-default">
+          <div class="caption text-center ui-state-hover" style="background-color: rgb(17, 160, 192);min-height: 35px ">
+            <h4>
+              <b>
+                <div style="margin-top: 5px;padding-top: 0.5rem">New ToDo</div>
+              </b>
+            </h4>
+          </div>
+          <div class="panel-heading">
+
+            <div class="row ">
+              <div class="col-md-12">
+                <input type="text" class="form-control" formControlName="name" placeholder="ToDo Name" maxlength="75" />
+                <div *ngIf="rForm.controls['name'].touched && rForm.controls['name'].invalid">
+                  <div *ngIf="rForm.get('name').hasError('required')">
+                    <span>
+                      <font color="red">ToDo Name is required.</font>
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-md-12 col-sm-12 col-xs-12 pad-adjust">
+                <input type="text" class="form-control" formControlName="plans" placeholder="Plans" maxlength="75" />
+                <div *ngIf="rForm.controls['plans'].touched && rForm.controls['plans'].invalid">
+                  <div *ngIf="rForm.get('plans').hasError('required')">
+                    <span>
+                      <font color="red">plans is required.</font>
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="row  pad-adjust">
+              <div class="col-xs-12 col-12 col-md-4 form-group">
+                <input type="text"    placeholder="dd/mm/yyyy" class="form-control"  #dp="bsDatepicker"  placement="right"                 bsDatepicker [(bsConfig)]="bsConfig" [(bsValue)]="bsValue">
+              </div>
+
+            </div>
+            <br>
+            <!-- <div class="row">
+        <div class="col-md-12 pad-adjust">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" checked class="text-muted"> Save details for fast payments
+              <a href="#"> learn how ?</a>
+            </label>
+          </div>
+        </div>
+      </div> -->
+            <div class="row ">
+              <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                <input type="button" class="btn btn-danger" value="CANCEL" />
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                <input type="submit" class="btn btn-warning btn-block" [disabled]="!rForm.valid" value="Submit" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+    <div class="col-md-6">
+        <app-todo-list [currentList]="getlisttodos()"></app-todo-list>
+      </div> </div>
